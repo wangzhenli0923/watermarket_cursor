@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WatermarkLab - Batch watermark your images quickly and easily">
+    <meta name="keywords" content="watermark, image watermark, batch watermark, photo watermark, image editing">
+    <title>WatermarkLab - Batch Image Watermarking Tool</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <!-- 苹果风格图标字体 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 苹果风格字体 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&display=swap">
+</head>
+<body>
+    <!-- 页面头部 -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="img/logo.svg" alt="WatermarkLab Logo">
+                <h1>WatermarkLab</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#how-it-works">How it Works</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Add Watermarks to Multiple Images at Once</h2>
+                <p>Protect your photos with custom watermarks in seconds. No signup required.</p>
+            </div>
+        </section>
+
+        <!-- 上传区域 -->
+        <section class="upload-section">
+            <div class="container">
+                <div class="upload-container" id="upload-area">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Drag & Drop Images Here</h3>
+                    <p>or</p>
+                    <button id="select-files-btn" class="btn primary">Select Images</button>
+                    <p class="upload-hint">PNG, JPG, JPEG (Max 5 images, 5MB each)</p>
+                    <input type="file" id="file-input" accept=".jpg,.jpeg,.png" multiple hidden>
+                </div>
+                <div class="upload-preview" id="upload-preview">
+                    <!-- 上传预览区域将通过JS动态填充 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 水印设置面板 -->
+        <section class="watermark-panel" id="watermark-panel">
+            <div class="container">
+                <h3>Watermark Settings</h3>
+                <div class="settings-grid">
+                    <div class="setting-group">
+                        <label for="watermark-text">Watermark Text</label>
+                        <input type="text" id="watermark-text" placeholder="Enter your watermark text" value="WatermarkLab.top">
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label>Watermark Density</label>
+                        <div class="density-options">
+                            <div class="density-option">
+                                <input type="radio" id="density-single" name="density" value="single" checked>
+                                <label for="density-single">Single</label>
+                            </div>
+                            <div class="density-option">
+                                <input type="radio" id="density-medium" name="density" value="medium">
+                                <label for="density-medium">Medium</label>
+                            </div>
+                            <div class="density-option">
+                                <input type="radio" id="density-dense" name="density" value="dense">
+                                <label for="density-dense">Dense</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="text-opacity">Opacity</label>
+                        <input type="range" id="text-opacity" min="0.1" max="1" step="0.1" value="0.5">
+                        <span id="opacity-value">50%</span>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="text-color">Color</label>
+                        <input type="color" id="text-color" value="#ffffff">
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="font-size">Font Size</label>
+                        <select id="font-size">
+                            <option value="20">Small</option>
+                            <option value="30" selected>Medium</option>
+                            <option value="40">Large</option>
+                        </select>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="text-rotation">Rotation</label>
+                        <input type="range" id="text-rotation" min="-45" max="45" value="-30">
+                        <span id="rotation-value">-30°</span>
+                    </div>
+                </div>
+                
+                <div class="actions">
+                    <button id="apply-watermark" class="btn primary">Apply Watermark</button>
+                    <button id="reset-settings" class="btn secondary">Reset Settings</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 图片预览区域 -->
+        <section class="preview-section" id="preview-section">
+            <div class="container">
+                <h3>Preview</h3>
+                <div class="preview-gallery" id="preview-gallery">
+                    <!-- 预览图片将通过JS动态填充 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 下载区域 -->
+        <section class="download-section" id="download-section">
+            <div class="container">
+                <h3>Download Watermarked Images</h3>
+                <div class="download-options">
+                    <button id="download-all" class="btn primary">
+                        <i class="fas fa-download"></i> Download All
+                    </button>
+                </div>
+                <div class="watermarked-gallery" id="watermarked-gallery">
+                    <!-- 水印图片将通过JS动态填充 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 如何使用说明 -->
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-upload"></i>
+                        </div>
+                        <h4>1. Upload Images</h4>
+                        <p>Select up to 5 images to watermark at once</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <h4>2. Configure Watermark</h4>
+                        <p>Set text, density, and style options</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h4>3. Preview Results</h4>
+                        <p>Compare original and watermarked images</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <h4>4. Download</h4>
+                        <p>Save individual or all watermarked images</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 常见问题 -->
+        <section id="faq" class="faq">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h4>Is my data secure?</h4>
+                        <p>Yes! All image processing happens directly in your browser. Your images are never uploaded to our servers.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What image formats are supported?</h4>
+                        <p>Currently, we support JPG, JPEG, and PNG formats.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Is there a limit to how many images I can watermark?</h4>
+                        <p>You can watermark up to 5 images at once.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What if I need to watermark more than 5 images?</h4>
+                        <p>Process 5 images at a time, download them, and then upload your next batch.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页面底部 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="img/logo.svg" alt="WatermarkLab Logo">
+                    <p>WatermarkLab.top</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#how-it-works">How it Works</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p>Questions or feedback? <a href="mailto:info@watermarklab.top">info@watermarklab.top</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 WatermarkLab.top. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript文件 -->
+    <script src="js/app.js"></script>
+</body>
+</html> 

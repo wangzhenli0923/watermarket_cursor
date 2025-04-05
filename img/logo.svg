@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" rx="40" fill="#007AFF" opacity="0.1"/>
+  <path d="M100 40C73.49 40 52 61.49 52 88C52 114.51 73.49 136 100 136C126.51 136 148 114.51 148 88C148 61.49 126.51 40 100 40ZM100 128C77.91 128 60 110.09 60 88C60 65.91 77.91 48 100 48C122.09 48 140 65.91 140 88C140 110.09 122.09 128 100 128Z" fill="#007AFF"/>
+  <path d="M100 56C82.33 56 68 70.33 68 88C68 105.67 82.33 120 100 120C117.67 120 132 105.67 132 88C132 70.33 117.67 56 100 56ZM100 112C86.75 112 76 101.25 76 88C76 74.75 86.75 64 100 64C113.25 64 124 74.75 124 88C124 101.25 113.25 112 100 112Z" fill="#007AFF"/>
+  <path d="M100 72C91.16 72 84 79.16 84 88C84 96.84 91.16 104 100 104C108.84 104 116 96.84 116 88C116 79.16 108.84 72 100 72ZM100 96C95.58 96 92 92.42 92 88C92 83.58 95.58 80 100 80C104.42 80 108 83.58 108 88C108 92.42 104.42 96 100 96Z" fill="#007AFF"/>
+  <path d="M40 148H160M52 164H148" stroke="#007AFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M68 180L132 180" stroke="#007AFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M135.5 54.5L84.5 106" stroke="#007AFF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M63.5 85.5L111.5 134" stroke="#007AFF" stroke-width="4" stroke-linecap="round"/>
+</svg> 
